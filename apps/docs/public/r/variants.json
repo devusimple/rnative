@@ -1,0 +1,13 @@
+{
+  "name": "variants",
+  "type": "registry:lib",
+  "title": "Variants Resolver",
+  "description": "Lightweight variant resolver.",
+  "files": [
+    {
+      "path": "src/lib/variants.ts",
+      "type": "registry:lib",
+      "content": "import { StyleSheet } from \"react-native\";\n\nexport type VariantMap = Record<string, Record<string, any>>;\n\nexport type VariantProps<V extends VariantMap> = {\n  [K in keyof V]?: keyof V[K];\n};\n\nexport type VariantConfig<V extends VariantMap> = {\n  base?: any;\n  variants?: V;\n  defaultVariants?: VariantProps<V>;\n};\n\nexport function createVariants<V extends VariantMap>(config: VariantConfig<V>) {\n  const { base, variants = {} as V, defaultVariants = {} } = config;\n\n  return function resolve(props: VariantProps<V> & { style?: any } = {}): any {\n    const chosen: Record<string, unknown> = { ...defaultVariants, ...props };\n    const styles: any[] = [];\n    if (base) styles.push(base);\n    for (const key of Object.keys(variants)) {\n      const value = chosen[key];\n      if (value != null && variants[key] && variants[key][value as string]) {\n        styles.push(variants[key][value as string]);\n      }\n    }\n    if (props.style) styles.push(props.style);\n    return styles.length === 1 ? styles[0] : styles;\n  };\n}\n\nexport const cx = (...classes: (string | false | null | undefined)[]) =>\n  classes.filter(Boolean).join(\" \");"
+    }
+  ]
+}

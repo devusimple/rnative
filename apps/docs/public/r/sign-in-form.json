@@ -1,0 +1,17 @@
+{
+  "name": "sign-in-form",
+  "type": "registry:block",
+  "title": "Sign In Form",
+  "description": "A ready-made sign-in form block.",
+  "files": [
+    {
+      "path": "src/components/blocks/sign-in-form.tsx",
+      "type": "registry:block",
+      "content": "import React, { useState } from \"react\";\nimport { View, Text, type ViewStyle } from \"react-native\";\nimport { Button } from \"../ui/button\";\nimport { Input } from \"../ui/input\";\nimport { useTheme } from \"../../theme/useTheme\";\nimport { spacing } from \"@rnative/tokens\";\n\nexport type SignInFormProps = {\n  onSubmit?: (email: string, password: string) => void;\n  style?: ViewStyle;\n};\n\nexport function SignInForm({ onSubmit, style }: SignInFormProps) {\n  const [email, setEmail] = useState(\"\");\n  const [password, setPassword] = useState(\"\");\n  const { theme } = useTheme();\n\n  return (\n    <View style={[{ gap: spacing[3] }, style]}>\n      <Text style={{ fontSize: 20, fontWeight: \"600\", color: theme.colors.foreground }}>\n        Sign in\n      </Text>\n      <Input\n        value={email}\n        onChangeText={setEmail}\n        placeholder=\"Email\"\n        autoCapitalize=\"none\"\n        keyboardType=\"email-address\"\n      />\n      <Input\n        value={password}\n        onChangeText={setPassword}\n        placeholder=\"Password\"\n        secureTextEntry\n      />\n      <Button label=\"Continue\" onPress={() => onSubmit?.(email, password)} />\n    </View>\n  );\n}"
+    }
+  ],
+  "registryDependencies": [
+    "button",
+    "input"
+  ]
+}

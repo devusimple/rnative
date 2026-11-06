@@ -1,0 +1,16 @@
+{
+  "name": "button",
+  "type": "registry:ui",
+  "title": "Button",
+  "description": "A pressable button with variants.",
+  "files": [
+    {
+      "path": "src/components/ui/button.tsx",
+      "type": "registry:ui",
+      "content": "import React from \"react\";\nimport {\n  Pressable,\n  Text,\n  type PressableProps,\n  type TextStyle,\n  type ViewStyle,\n} from \"react-native\";\nimport { useTheme } from \"../../theme/useTheme\";\nimport { createVariants } from \"../../lib/variants\";\nimport { radius, spacing } from \"@rnative/tokens\";\n\nexport const buttonVariants = createVariants({\n  base: {\n    flexDirection: \"row\",\n    alignItems: \"center\",\n    justifyContent: \"center\",\n    borderRadius: radius.md,\n    paddingHorizontal: spacing[4],\n    paddingVertical: spacing[2],\n  } as ViewStyle,\n  variants: {\n    variant: {\n      default: {} as ViewStyle,\n      secondary: {} as ViewStyle,\n      outline: { borderWidth: 1 } as ViewStyle,\n      ghost: {} as ViewStyle,\n      destructive: {} as ViewStyle,\n    },\n    size: {\n      sm: { paddingHorizontal: spacing[3], paddingVertical: spacing[1.5] } as ViewStyle,\n      default: {} as ViewStyle,\n      lg: { paddingHorizontal: spacing[6], paddingVertical: spacing[3] } as ViewStyle,\n      icon: { paddingHorizontal: spacing[2], paddingVertical: spacing[2] } as ViewStyle,\n    },\n  },\n  defaultVariants: { variant: \"default\", size: \"default\" },\n});\n\nexport type ButtonProps = PressableProps & {\n  variant?: \"default\" | \"secondary\" | \"outline\" | \"ghost\" | \"destructive\";\n  size?: \"sm\" | \"default\" | \"lg\" | \"icon\";\n  label?: string;\n  children?: React.ReactNode;\n};\n\nexport function Button({\n  variant = \"default\",\n  size = \"default\",\n  label,\n  children,\n  style,\n  ...props\n}: ButtonProps) {\n  const { theme } = useTheme();\n  const c = theme.colors;\n\n  const variantStyle: ViewStyle =\n    variant === \"default\"\n      ? { backgroundColor: c.primary }\n      : variant === \"secondary\"\n        ? { backgroundColor: c.secondary }\n        : variant === \"outline\"\n          ? { backgroundColor: \"transparent\", borderColor: c.border }\n          : variant === \"ghost\"\n            ? { backgroundColor: \"transparent\" }\n            : { backgroundColor: c.destructive };\n\n  const textStyle: TextStyle = {\n    color:\n      variant === \"default\"\n        ? c.primaryForeground\n        : variant === \"secondary\"\n          ? c.secondaryForeground\n          : variant === \"destructive\"\n            ? c.destructiveForeground\n            : c.foreground,\n    fontSize: 14,\n    fontWeight: \"500\",\n  };\n\n  return (\n    <Pressable\n      style={({ pressed }) => [\n        buttonVariants({ variant, size }),\n        variantStyle,\n        pressed && { opacity: 0.8 },\n        style as any,\n      ]}\n      {...props}\n    >\n      {label ? <Text style={textStyle}>{label}</Text> : null}\n      {children}\n    </Pressable>\n  );\n}"
+    }
+  ],
+  "dependencies": [
+    "react-native"
+  ]
+}

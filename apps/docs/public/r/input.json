@@ -1,0 +1,16 @@
+{
+  "name": "input",
+  "type": "registry:ui",
+  "title": "Input",
+  "description": "A text input field.",
+  "files": [
+    {
+      "path": "src/components/ui/input.tsx",
+      "type": "registry:ui",
+      "content": "import React from \"react\";\nimport { TextInput, type TextInputProps, type ViewStyle } from \"react-native\";\nimport { useTheme } from \"../../theme/useTheme\";\nimport { radius, spacing } from \"@rnative/tokens\";\n\nexport type InputProps = TextInputProps & {\n  containerStyle?: ViewStyle;\n};\n\nexport function Input({ containerStyle, style, ...props }: InputProps) {\n  const { theme } = useTheme();\n  const c = theme.colors;\n\n  return (\n    <TextInput\n      placeholderTextColor={c.mutedForeground}\n      style={[\n        {\n          height: 40,\n          borderWidth: 1,\n          borderColor: c.input,\n          borderRadius: radius.md,\n          paddingHorizontal: spacing[3],\n          color: c.foreground,\n          backgroundColor: c.background,\n          fontSize: 14,\n        },\n        style,\n      ]}\n      {...props}\n    />\n  );\n}"
+    }
+  ],
+  "dependencies": [
+    "react-native"
+  ]
+}

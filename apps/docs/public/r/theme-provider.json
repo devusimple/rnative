@@ -1,0 +1,18 @@
+{
+  "name": "theme-provider",
+  "type": "registry:lib",
+  "title": "Theme Provider",
+  "description": "Theme context and hook.",
+  "files": [
+    {
+      "path": "src/theme/ThemeProvider.tsx",
+      "type": "registry:lib",
+      "content": "import React, { createContext, useContext, useMemo, useState } from \"react\";\nimport { colors, type ColorScheme } from \"@rnative/tokens\";\n\nexport type Theme = {\n  scheme: ColorScheme;\n  colors: (typeof colors)[ColorScheme];\n};\n\nexport type ThemeContextValue = {\n  theme: Theme;\n  setScheme: (scheme: ColorScheme) => void;\n  toggleScheme: () => void;\n};\n\nconst ThemeContext = createContext<ThemeContextValue | null>(null);\n\nexport type ThemeProviderProps = {\n  initialScheme?: ColorScheme;\n  children: React.ReactNode;\n};\n\nexport function ThemeProvider({ initialScheme = \"light\", children }: ThemeProviderProps) {\n  const [scheme, setScheme] = useState<ColorScheme>(initialScheme);\n\n  const value = useMemo<ThemeContextValue>(\n    () => ({\n      theme: { scheme, colors: colors[scheme] },\n      setScheme,\n      toggleScheme: () => setScheme((s) => (s === \"light\" ? \"dark\" : \"light\")),\n    }),\n    [scheme],\n  );\n\n  return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;\n}\n\nexport function useThemeContext(): ThemeContextValue {\n  const ctx = useContext(ThemeContext);\n  if (!ctx) throw new Error(\"useTheme must be used within a ThemeProvider\");\n  return ctx;\n}"
+    },
+    {
+      "path": "src/theme/useTheme.ts",
+      "type": "registry:lib",
+      "content": "import { useThemeContext } from \"./ThemeProvider\";\n\nexport function useTheme() {\n  return useThemeContext();\n}"
+    }
+  ]
+}

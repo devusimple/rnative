@@ -1,0 +1,81 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "rnative",
+  "homepage": "https://rnative.dev",
+  "items": [
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "A pressable button with variants.",
+      "files": [
+        {
+          "path": "src/components/ui/button.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "react-native"
+      ]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "title": "Input",
+      "description": "A text input field.",
+      "files": [
+        {
+          "path": "src/components/ui/input.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "react-native"
+      ]
+    },
+    {
+      "name": "sign-in-form",
+      "type": "registry:block",
+      "title": "Sign In Form",
+      "description": "A ready-made sign-in form block.",
+      "files": [
+        {
+          "path": "src/components/blocks/sign-in-form.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "registryDependencies": [
+        "button",
+        "input"
+      ]
+    },
+    {
+      "name": "theme-provider",
+      "type": "registry:lib",
+      "title": "Theme Provider",
+      "description": "Theme context and hook.",
+      "files": [
+        {
+          "path": "src/theme/ThemeProvider.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/theme/useTheme.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "variants",
+      "type": "registry:lib",
+      "title": "Variants Resolver",
+      "description": "Lightweight variant resolver.",
+      "files": [
+        {
+          "path": "src/lib/variants.ts",
+          "type": "registry:lib"
+        }
+      ]
+    }
+  ]
+}
