@@ -1,0 +1,9 @@
+{
+  "expo": {
+    "name": "rnative showcase",
+    "slug": "rnative-showcase",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic"
+  }
+}

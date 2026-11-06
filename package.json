@@ -1,0 +1,21 @@
+{
+  "name": "rnative",
+  "private": true,
+  "version": "0.0.0",
+  "description": "rnative - a React Native component registry and design system",
+  "scripts": {
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "lint": "turbo lint",
+    "test": "turbo test",
+    "clean": "turbo clean"
+  },
+  "devDependencies": {
+    "turbo": "^2.3.0",
+    "typescript": "^5.6.0"
+  },
+  "packageManager": "pnpm@9.12.0",
+  "engines": {
+    "node": ">=18"
+  }
+}

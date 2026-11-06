@@ -1,0 +1,10 @@
+{
+  "name": "rnative",
+  "style": "default",
+  "aliases": {
+    "components": "@/components",
+    "lib": "@/lib",
+    "theme": "@/theme"
+  },
+  "r": "https://rnative.dev/r"
+}

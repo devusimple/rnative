@@ -1,0 +1,1 @@
+Registry JSON files are served from this directory.
