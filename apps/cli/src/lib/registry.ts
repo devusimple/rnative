@@ -25,7 +25,7 @@ export interface RegistryManifest {
   items: RegistryItem[];
 }
 
-export const REGISTRY_URL = process.env.RNATIVE_REGISTRY_URL ?? "https://rnative.dev/r";
+export const REGISTRY_URL = process.env.RNATIVE_REGISTRY_URL ?? "https://rnative.vercel.app/r";
 
 async function readLocalManifest(): Promise<RegistryManifest | null> {
   const candidates = [

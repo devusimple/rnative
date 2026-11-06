@@ -22,7 +22,7 @@ export const DEFAULT_CONFIG: RnativeConfig = {
     lib: "@/lib",
     theme: "@/theme",
   },
-  r: "https://rnative.dev/r",
+  r: "https://rnative.vercel.app/r",
 };
 
 export function readConfig(cwd: string): RnativeConfig | null {
